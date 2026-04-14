@@ -39,11 +39,11 @@ while value != 7:
             for i in result:
                 print(f"\nID: {i[0]}\nReclamação: {i[1]}\n")
     elif value == 2:
+         # Registrar no MySQL
         idInput = random.randint(1000000, 9999999)
         claimInput = input(f"\n=== Iniciando registro de ID n° {idInput} ===\n"
                            "\nTranscreva a reclamação aqui: ")
-        
-        # Registrar no MySQL
+    
         sql = "INSERT INTO reclamacoes (id, texto) VALUES (%s, %s)"
         val = (idInput, claimInput)
 
@@ -52,6 +52,7 @@ while value != 7:
 
         print(f"\nReclamação de ID n° {idInput} registrada!\n")
     elif value == 3:
+        # Pesquisar no MySQL
         idInput = int(input("\nDigite o ID da reclamação: "))
 
         cursor.execute("SELECT * FROM reclamacoes WHERE id = %s", (idInput,))
@@ -62,6 +63,7 @@ while value != 7:
         else:
             print("\nReclamação não encontrada.\n")
     elif value == 4:
+        # Atualizar no MySQL
         idInput = int(input("\nDigite o ID da reclamação: "))
 
         cursor.execute("SELECT * FROM reclamacoes WHERE id = %s", (idInput,))
@@ -80,6 +82,7 @@ while value != 7:
         else:
             print("\nReclamação não encontrada.\n")
     elif value == 5:
+        # Deletar no MySQL
         idInput = int(input("\nDigite o ID da reclamação: "))
 
         cursor.execute("SELECT * FROM reclamacoes WHERE id = %s", (idInput,))
@@ -93,6 +96,7 @@ while value != 7:
         else:
             print("\nReclamação não encontrada.\n")
     elif value == 6:
+        # Listar no MySQL
         cursor.execute("SELECT COUNT(*) FROM reclamacoes")
         total = cursor.fetchone()[0]
 
